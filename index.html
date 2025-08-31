@@ -4,20 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MON</title>
-
-  <!-- Open Graph Meta Tags for embed preview -->
-  <meta property="og:title" content="MON - VR Adventure Game" />
-  <meta property="og:description" content="Climb, swing, and hang out in a new VR adventure." />
-  <meta property="og:image" content="https://2smart-dev-debug.github.io/MON-Website/screenshot2.png" />
-  <meta property="og:url" content="https://2smart-dev-debug.github.io/MON-Website/" />
-  <meta property="og:type" content="website" />
-
-  <!-- Twitter Card Meta Tags for Twitter embed -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MON - VR Adventure Game" />
-  <meta name="twitter:description" content="Climb, swing, and hang out in a new VR adventure." />
-  <meta name="twitter:image" content="https://2smart-dev-debug.github.io/MON-Website/screenshot2.png" />
-
   <style>
     body {
       margin: 0;
@@ -25,10 +11,9 @@
       color: #f1f1f1;
       line-height: 1.6;
       overflow-x: hidden;
-      background-color: #000; /* fallback */
+      background-color: #000;
     }
 
-    /* HEADER: dark red fading to transparent at bottom */
     header {
       text-align: center;
       padding: 4rem 2rem;
@@ -49,7 +34,7 @@
       margin: 1rem 0;
     }
 
-    .cta-btn {
+    .cta-btn, .tab-btn {
       display: inline-block;
       margin-top: 1rem;
       padding: 1rem 2.5rem;
@@ -62,43 +47,36 @@
       box-shadow: 0 0 15px darkred;
       transition: 0.3s;
       animation: pulseGlow 3s infinite alternate;
+      cursor: pointer;
+      border: none;
     }
 
-    .cta-btn:hover {
+    .cta-btn:hover, .tab-btn:hover {
       background: gold;
       color: black;
       box-shadow: 0 0 20px gold;
     }
 
-    /* ABOUT section: solid black background */
+    #about, #gallery, #download {
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
     #about {
       background-color: #000;
-      padding: 4rem 2rem;
-      position: relative;
-      z-index: 2;
-      color: #f1f1f1;
     }
 
-    #about ul {
-      list-style: none;
-      padding-left: 1rem;
-    }
-
-    #about ul li {
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-    }
-
-    /* GALLERY: dark purple fading in from transparent top */
     #gallery {
       background: linear-gradient(to bottom, rgba(51, 0, 51, 0) 0%, #330033 30%, #330033 100%);
-      padding: 4rem 2rem;
-      position: relative;
-      z-index: 2;
-      color: #f1f1f1;
     }
 
-    #gallery h2 {
+    #download {
+      background: linear-gradient(to bottom, #330033 0%, #330033 70%, #000 100%);
+      text-align: center;
+    }
+
+    h2 {
       color: gold;
       text-align: center;
       margin-bottom: 2rem;
@@ -124,37 +102,6 @@
       transform: scale(1.05);
     }
 
-    /* DOWNLOAD: dark purple fading to black */
-    #download {
-      background: linear-gradient(to bottom, #330033 0%, #330033 70%, #000 100%);
-      padding: 4rem 2rem;
-      position: relative;
-      z-index: 2;
-      color: #f1f1f1;
-      text-align: center;
-    }
-
-    #download .cta-btn {
-      background: darkred;
-      color: silver;
-      font-weight: bold;
-      border-radius: 10px;
-      padding: 1rem 2.5rem;
-      font-size: 1.3rem;
-      box-shadow: 0 0 15px darkred;
-      transition: 0.3s;
-      animation: pulseGlow 3s infinite alternate;
-      display: inline-block;
-      text-decoration: none;
-    }
-
-    #download .cta-btn:hover {
-      background: gold;
-      color: black;
-      box-shadow: 0 0 20px gold;
-    }
-
-    /* FOOTER: solid dark gray */
     footer {
       text-align: center;
       padding: 2rem;
@@ -162,7 +109,6 @@
       margin-top: 2rem;
       position: relative;
       z-index: 2;
-      color: #f1f1f1;
     }
 
     .social-links a {
@@ -180,15 +126,10 @@
     }
 
     @keyframes pulseGlow {
-      0% {
-        text-shadow: 0 0 5px gold;
-      }
-      100% {
-        text-shadow: 0 0 20px gold;
-      }
+      0% { text-shadow: 0 0 5px gold; }
+      100% { text-shadow: 0 0 20px gold; }
     }
 
-    /* Particle canvas */
     #particles {
       position: fixed;
       top: 0;
@@ -197,6 +138,42 @@
       height: 100%;
       z-index: 1;
       pointer-events: none;
+    }
+
+    /* Privacy Panel */
+    #privacy-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 600px;
+      height: 100%;
+      background-color: #111;
+      color: #f1f1f1;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      overflow-y: auto;
+      transition: right 0.5s ease;
+    }
+
+    #privacy-panel.active {
+      right: 0;
+    }
+
+    .privacy-content {
+      padding: 2rem;
+    }
+
+    .tab-btn.close-btn {
+      float: right;
+      margin-top: 0;
+      background: #222;
+      border: 2px solid gold;
+    }
+
+    .tab-btn.close-btn:hover {
+      background: gold;
+      color: black;
     }
   </style>
 </head>
@@ -207,12 +184,13 @@
     <h1>MON</h1>
     <p>Climb, swing, and hang out in a new VR adventure.</p>
     <a href="#download" class="cta-btn">Play Now</a>
+    <button class="tab-btn" onclick="openPrivacy()">Privacy Policy</button>
   </header>
 
   <section id="about">
     <h2>About the Game</h2>
     <p>
-      Step into a world built for fun, freedom, and community! In <strong>MON</strong>, you’ll swing, climb, and explore across unique environments designed for both adventure and relaxation. Test your skills in the forest arena, hang out with friends in the Chill Room, showcase creativity in the Fan Art area, or discover new cosmetics and surprises in the shop.
+      Step into a world built for fun, freedom, and community! In <strong>MON</strong>, you’ll swing, climb, and explore across unique environments...
     </p>
     <ul>
       <li>🏞️ Expansive maps to climb, swing, and explore</li>
@@ -230,21 +208,93 @@
 
   <section id="download">
     <h2>Get the Game</h2>
-    <p>
-      <a href="YOUR_META_STORE_LINK" class="cta-btn">Download on Meta Store</a>
-    </p>
+    <p><a href="YOUR_META_STORE_LINK" class="cta-btn">Download on Meta Store</a></p>
   </section>
 
   <footer>
     <p>© 2025 2SmartStudios</p>
     <div class="social-links">
       <a href="https://discord.gg/UHVYPmMNzD">Discord</a>
-      <a href="https://www.tiktok.com/@2.smart_fr?is_from_webapp=1&sender_device=pc">TikTok</a>
+      <a href="https://www.tiktok.com/@2.smart_fr">TikTok</a>
     </div>
   </footer>
 
+  <!-- Privacy Slide-In Panel -->
+
+
+<div id="privacy-panel">
+  <div class="privacy-content">
+    <button class="tab-btn close-btn" onclick="closePrivacy()">Back</button>
+    <h2>Privacy Policy</h2>
+    <p><strong>Privacy Policy for MonkeysPalaceV2</strong></p>
+    <p>We are committed to protecting your privacy and ensuring a safe gaming experience. This Privacy Policy outlines how we collect, use, and protect your information when you interact with our game.</p>
+    <p>By using our games, you agree to the terms of this Privacy Policy. If you do not agree with this policy, please do not use our services.</p>
+
+    <h3>1. Information We Collect</h3>
+    <p><strong>a. Personal Information</strong></p>
+    <ul>
+      <li><strong>Account Information:</strong> If you create an account within our games or connect to third-party services (e.g., PlayFab, Oculus), we may collect personal information such as your name, email address, and other account-related details.</li>
+      <li><strong>Billing Information:</strong> If you make in-game purchases, we may collect payment details, though payments are processed through third-party platforms like Meta Quest, which handle your financial data securely.</li>
+    </ul>
+
+    <p><strong>b. Usage Data</strong></p>
+    <ul>
+      <li>Playtime, in-game behavior, preferences, and achievements.</li>
+      <li>Device information (e.g., device type, OS version, and settings).</li>
+      <li>Network info (e.g., IP address, internet connection).</li>
+      <li>Error logs or crash reports for stability improvements.</li>
+    </ul>
+
+    <p><strong>c. Audio and Video Data</strong></p>
+    <p>Our games may capture audio/video data for features like voice chat or VR tracking. You’ll be notified when active and can disable them in settings.</p>
+
+    <p><strong>d. Location Information</strong></p>
+    <p>We may collect general location data for leaderboards or performance optimization.</p>
+
+    <h3>2. How We Use Your Information</h3>
+    <ul>
+      <li>To provide and improve the game</li>
+      <li>To communicate with you</li>
+      <li>To personalize the experience</li>
+      <li>To prevent fraud and ensure safety</li>
+      <li>For analytics and improvements</li>
+    </ul>
+
+    <h3>3. Sharing Your Information</h3>
+    <ul>
+      <li><strong>Service Providers:</strong> Used for hosting, analytics, payments. Must protect your data.</li>
+      <li><strong>With Your Consent:</strong> Only shared if you agree.</li>
+      <li><strong>Legal Compliance:</strong> If required by law or legal request.</li>
+    </ul>
+
+    <h3>4. Data Retention</h3>
+    <p>We keep your data as long as needed for game service. You can request deletion anytime at <a href="mailto:ownbyc92@gmail.com">ownbyc92@gmail.com</a>.</p>
+
+    <h3>5. Your Rights and Choices</h3>
+    <ul>
+      <li><strong>Access/Update:</strong> Through account or contact us.</li>
+      <li><strong>Delete Data:</strong> Contact us to delete your info.</li>
+      <li><strong>Opt-out:</strong> Unsubscribe via email or settings.</li>
+      <li><strong>Data Portability:</strong> Request a copy of your data.</li>
+    </ul>
+
+    <h3>6. Data Security</h3>
+    <p>We use reasonable protections, but cannot guarantee 100% security online.</p>
+
+    <h3>7. Children’s Privacy</h3>
+    <p>We don’t collect data from children under 13 (or 16 in the EU). If found, we will delete it.</p>
+
+    <h3>8. Changes to This Privacy Policy</h3>
+    <p>We may update this policy and notify you in-game or on the website. Please check it periodically.</p>
+
+    <h3>9. Contact Us</h3>
+    <p>If you have questions, email us at <a href="mailto:ownbyc92@gmail.com">ownbyc92@gmail.com</a> or visit our site: MonkeysPalaceV2</p>
+  </div>
+</div>
+
+
   <script>
-    // Auto-load screenshots
+    // Load screenshots
     const gallery = document.getElementById("screenshot-gallery");
     const totalScreenshots = 10;
     for (let i = 1; i <= totalScreenshots; i++) {
@@ -255,7 +305,7 @@
       gallery.appendChild(img);
     }
 
-    // Falling particles with twinkle
+    // Particle animation
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -284,10 +334,8 @@
         p.y += p.speed;
         if (p.y > canvas.height) p.y = 0;
 
-        // Twinkle effect
         p.opacity += p.fade * (Math.random() > 0.5 ? 1 : -1);
-        if (p.opacity > 1) p.opacity = 1;
-        if (p.opacity < 0.1) p.opacity = 0.1;
+        p.opacity = Math.max(0.1, Math.min(1, p.opacity));
       }
       requestAnimationFrame(animateParticles);
     }
@@ -297,6 +345,15 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
+
+    // Privacy tab slide-in
+    function openPrivacy() {
+      document.getElementById('privacy-panel').classList.add('active');
+    }
+
+    function closePrivacy() {
+      document.getElementById('privacy-panel').classList.remove('active');
+    }
   </script>
 </body>
 </html>
