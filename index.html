@@ -8,58 +8,71 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #0a0a0a;
+      background-color: #000;
       color: #f1f1f1;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     header {
       text-align: center;
       padding: 4rem 2rem;
-      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+      background: linear-gradient(135deg, #000, #1a0000);
+      position: relative;
+      z-index: 2;
     }
     header h1 {
-      font-size: 3rem;
-      color: #00ffcc;
-      text-shadow: 0 0 10px #00ffcc;
+      font-size: 3.5rem;
+      color: gold;
+      text-shadow: 0 0 15px gold;
+      animation: pulseGlow 2s infinite alternate;
     }
     header p {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       margin: 1rem 0;
     }
     .cta-btn {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.75rem 2rem;
-      background: #00ffcc;
-      color: #0a0a0a;
+      padding: 1rem 2.5rem;
+      background: darkred;
+      color: silver;
       font-weight: bold;
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      box-shadow: 0 0 15px darkred;
       transition: 0.3s;
+      animation: pulseGlow 3s infinite alternate;
     }
     .cta-btn:hover {
-      background: #00ccaa;
+      background: gold;
+      color: black;
+      box-shadow: 0 0 20px gold;
     }
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
       margin: auto;
+      position: relative;
+      z-index: 2;
     }
     section h2 {
-      color: #00ffcc;
+      color: gold;
       text-align: center;
       margin-bottom: 2rem;
-      text-shadow: 0 0 8px #00ffcc;
+      font-size: 2.5rem;
+      text-shadow: 0 0 12px gold;
+      animation: pulseGlow 2.5s infinite alternate;
     }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
     }
     .gallery img {
       width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #000;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #000;
       transition: transform 0.3s;
     }
     .gallery img:hover {
@@ -70,20 +83,42 @@
       padding: 2rem;
       background: #111;
       margin-top: 2rem;
+      position: relative;
+      z-index: 2;
     }
     .social-links a {
       margin: 0 10px;
-      color: #00ffcc;
+      color: gold;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.2rem;
       transition: 0.3s;
     }
     .social-links a:hover {
-      color: #ffffff;
+      color: silver;
+      text-shadow: 0 0 8px silver;
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 5px gold; }
+      100% { text-shadow: 0 0 20px gold; }
+    }
+
+    /* Particle canvas */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
+  <canvas id="particles"></canvas>
+
   <header>
     <h1>MON</h1>
     <p>Climb, swing, and hang out in a new VR adventure.</p>
@@ -106,13 +141,7 @@
 
   <section id="gallery">
     <h2>Screenshots</h2>
-    <div class="gallery">
-      <img src="screenshot1.png" alt="Screenshot 1">
-      <img src="screenshot2.png" alt="Screenshot 2">
-      <img src="screenshot3.png" alt="Screenshot 3">
-      <img src="screenshot4.png" alt="Screenshot 4">
-      <img src="screenshot5.png" alt="Screenshot 5">
-    </div>
+    <div class="gallery" id="screenshot-gallery"></div>
   </section>
 
   <section id="download">
@@ -129,5 +158,61 @@
       <a href="https://www.tiktok.com/@2.smart_fr?is_from_webapp=1&sender_device=pc">TikTok</a>
     </div>
   </footer>
+
+  <script>
+    // Auto-load screenshots
+    const gallery = document.getElementById("screenshot-gallery");
+    const totalScreenshots = 10; 
+    for (let i = 1; i <= totalScreenshots; i++) {
+      const img = document.createElement("img");
+      img.src = `screenshot${i}.png`;
+      img.alt = `Screenshot ${i}`;
+      img.onerror = () => img.remove();
+      gallery.appendChild(img);
+    }
+
+    // Falling particles with twinkle
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speed: Math.random() * 1 + 0.5,
+        opacity: Math.random(),
+        fade: Math.random() * 0.02 + 0.01
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 215, 0, ${p.opacity})`;
+        ctx.fill();
+
+        p.y += p.speed;
+        if (p.y > canvas.height) p.y = 0;
+
+        // Twinkle effect
+        p.opacity += p.fade * (Math.random() > 0.5 ? 1 : -1);
+        if (p.opacity > 1) p.opacity = 1;
+        if (p.opacity < 0.1) p.opacity = 0.1;
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
