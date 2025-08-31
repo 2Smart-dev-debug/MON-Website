@@ -139,42 +139,6 @@
       z-index: 1;
       pointer-events: none;
     }
-
-    /* Privacy Panel */
-    #privacy-panel {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 100%;
-      max-width: 600px;
-      height: 100%;
-      background-color: #111;
-      color: #f1f1f1;
-      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.8);
-      z-index: 9999;
-      overflow-y: auto;
-      transition: right 0.5s ease;
-    }
-
-    #privacy-panel.active {
-      right: 0;
-    }
-
-    .privacy-content {
-      padding: 2rem;
-    }
-
-    .tab-btn.close-btn {
-      float: right;
-      margin-top: 0;
-      background: #222;
-      border: 2px solid gold;
-    }
-
-    .tab-btn.close-btn:hover {
-      background: gold;
-      color: black;
-    }
   </style>
 </head>
 <body>
@@ -184,7 +148,7 @@
     <h1>MON</h1>
     <p>Climb, swing, and hang out in a new VR adventure.</p>
     <a href="#download" class="cta-btn">Play Now</a>
-    <button class="tab-btn" onclick="openPrivacy()">Privacy Policy</button>
+    <a href="https://2smart-dev-debug.github.io/MON-Website/privacypolicy" class="tab-btn" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
   </header>
 
   <section id="about">
@@ -218,80 +182,6 @@
       <a href="https://www.tiktok.com/@2.smart_fr">TikTok</a>
     </div>
   </footer>
-
-  <!-- Privacy Slide-In Panel -->
-
-
-<div id="privacy-panel">
-  <div class="privacy-content">
-    <button class="tab-btn close-btn" onclick="closePrivacy()">Back</button>
-    <h2>Privacy Policy</h2>
-    <p><strong>Privacy Policy for MonkeysPalaceV2</strong></p>
-    <p>We are committed to protecting your privacy and ensuring a safe gaming experience. This Privacy Policy outlines how we collect, use, and protect your information when you interact with our game.</p>
-    <p>By using our games, you agree to the terms of this Privacy Policy. If you do not agree with this policy, please do not use our services.</p>
-
-    <h3>1. Information We Collect</h3>
-    <p><strong>a. Personal Information</strong></p>
-    <ul>
-      <li><strong>Account Information:</strong> If you create an account within our games or connect to third-party services (e.g., PlayFab, Oculus), we may collect personal information such as your name, email address, and other account-related details.</li>
-      <li><strong>Billing Information:</strong> If you make in-game purchases, we may collect payment details, though payments are processed through third-party platforms like Meta Quest, which handle your financial data securely.</li>
-    </ul>
-
-    <p><strong>b. Usage Data</strong></p>
-    <ul>
-      <li>Playtime, in-game behavior, preferences, and achievements.</li>
-      <li>Device information (e.g., device type, OS version, and settings).</li>
-      <li>Network info (e.g., IP address, internet connection).</li>
-      <li>Error logs or crash reports for stability improvements.</li>
-    </ul>
-
-    <p><strong>c. Audio and Video Data</strong></p>
-    <p>Our games may capture audio/video data for features like voice chat or VR tracking. You’ll be notified when active and can disable them in settings.</p>
-
-    <p><strong>d. Location Information</strong></p>
-    <p>We may collect general location data for leaderboards or performance optimization.</p>
-
-    <h3>2. How We Use Your Information</h3>
-    <ul>
-      <li>To provide and improve the game</li>
-      <li>To communicate with you</li>
-      <li>To personalize the experience</li>
-      <li>To prevent fraud and ensure safety</li>
-      <li>For analytics and improvements</li>
-    </ul>
-
-    <h3>3. Sharing Your Information</h3>
-    <ul>
-      <li><strong>Service Providers:</strong> Used for hosting, analytics, payments. Must protect your data.</li>
-      <li><strong>With Your Consent:</strong> Only shared if you agree.</li>
-      <li><strong>Legal Compliance:</strong> If required by law or legal request.</li>
-    </ul>
-
-    <h3>4. Data Retention</h3>
-    <p>We keep your data as long as needed for game service. You can request deletion anytime at <a href="mailto:stillhere389@gmail.com">stillhere389@gmail.com</a>.</p>
-
-    <h3>5. Your Rights and Choices</h3>
-    <ul>
-      <li><strong>Access/Update:</strong> Through account or contact us.</li>
-      <li><strong>Delete Data:</strong> Contact us to delete your info.</li>
-      <li><strong>Opt-out:</strong> Unsubscribe via email or settings.</li>
-      <li><strong>Data Portability:</strong> Request a copy of your data.</li>
-    </ul>
-
-    <h3>6. Data Security</h3>
-    <p>We use reasonable protections, but cannot guarantee 100% security online.</p>
-
-    <h3>7. Children’s Privacy</h3>
-    <p>We don’t collect data from children under 13 (or 16 in the EU). If found, we will delete it.</p>
-
-    <h3>8. Changes to This Privacy Policy</h3>
-    <p>We may update this policy and notify you in-game or on the website. Please check it periodically.</p>
-
-    <h3>9. Contact Us</h3>
-    <p>If you have questions, email us at <a href="mailto:stillhere389@gmail.com">stillhere389@gmail.com.</p>
-  </div>
-</div>
-
 
   <script>
     // Load screenshots
@@ -345,15 +235,6 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
-
-    // Privacy tab slide-in
-    function openPrivacy() {
-      document.getElementById('privacy-panel').classList.add('active');
-    }
-
-    function closePrivacy() {
-      document.getElementById('privacy-panel').classList.remove('active');
-    }
   </script>
 </body>
 </html>
