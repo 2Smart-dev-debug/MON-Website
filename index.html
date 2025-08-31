@@ -8,29 +8,40 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #000;
       color: #f1f1f1;
       line-height: 1.6;
       overflow-x: hidden;
-      animation: backgroundFade 10s infinite alternate;
+
+      /* Animated multi-color gradient background */
+      background: linear-gradient(270deg, #000000, #1a0000, #330033, #000000);
+      background-size: 800% 800%;
+      animation: gradientFade 20s ease infinite;
     }
+
     header {
       text-align: center;
       padding: 4rem 2rem;
-      background: linear-gradient(135deg, #000, #1a0000);
       position: relative;
       z-index: 2;
+
+      /* Same animated gradient on header */
+      background: linear-gradient(270deg, #000000, #1a0000, #330033, #000000);
+      background-size: 800% 800%;
+      animation: gradientFade 20s ease infinite;
     }
+
     header h1 {
       font-size: 3.5rem;
       color: gold;
       text-shadow: 0 0 15px gold;
       animation: pulseGlow 2s infinite alternate;
     }
+
     header p {
       font-size: 1.4rem;
       margin: 1rem 0;
     }
+
     .cta-btn {
       display: inline-block;
       margin-top: 1rem;
@@ -45,11 +56,13 @@
       transition: 0.3s;
       animation: pulseGlow 3s infinite alternate;
     }
+
     .cta-btn:hover {
       background: gold;
       color: black;
       box-shadow: 0 0 20px gold;
     }
+
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
@@ -57,6 +70,7 @@
       position: relative;
       z-index: 2;
     }
+
     section h2 {
       color: gold;
       text-align: center;
@@ -65,20 +79,24 @@
       text-shadow: 0 0 12px gold;
       animation: pulseGlow 2.5s infinite alternate;
     }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
+
     .gallery img {
       width: 100%;
       border-radius: 12px;
       box-shadow: 0 0 15px #000;
       transition: transform 0.3s;
     }
+
     .gallery img:hover {
       transform: scale(1.05);
     }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -87,6 +105,7 @@
       position: relative;
       z-index: 2;
     }
+
     .social-links a {
       margin: 0 10px;
       color: gold;
@@ -95,6 +114,7 @@
       font-size: 1.2rem;
       transition: 0.3s;
     }
+
     .social-links a:hover {
       color: silver;
       text-shadow: 0 0 8px silver;
@@ -105,10 +125,16 @@
       100% { text-shadow: 0 0 20px gold; }
     }
 
-    @keyframes backgroundFade {
-      0%   { background-color: #000000; }
-      50%  { background-color: #1a0000; }
-      100% { background-color: #000000; }
+    @keyframes gradientFade {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     /* Particle canvas */
@@ -159,7 +185,7 @@
   </section>
 
   <footer>
-    <p>© 2025 Your Game Studio</p>
+    <p>© 2025 2SmartStudios</p>
     <div class="social-links">
       <a href="https://discord.gg/UHVYPmMNzD">Discord</a>
       <a href="https://www.tiktok.com/@2.smart_fr?is_from_webapp=1&sender_device=pc">TikTok</a>
