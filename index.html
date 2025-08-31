@@ -57,9 +57,13 @@
       z-index: 2;
     }
 
-    /* Make About section background transparent so particles show behind */
+    /* About section with semi-transparent background fade */
     #about {
-      background: transparent; /* <-- key change here */
+      background: linear-gradient(
+        to bottom,
+        rgba(26, 0, 0, 0.8),   /* dark red, 80% opacity */
+        rgba(0, 0, 0, 0.8)     /* black, 80% opacity */
+      );
       color: #f1f1f1;
     }
 
@@ -166,7 +170,7 @@
   </section>
 
   <footer>
-    <p>© 2025 2SmartStudio</p>
+    <p>© 2025 2SmartStudios</p>
     <div class="social-links">
       <a href="https://discord.gg/UHVYPmMNzD">Discord</a>
       <a href="https://www.tiktok.com/@2.smart_fr?is_from_webapp=1&sender_device=pc">TikTok</a>
