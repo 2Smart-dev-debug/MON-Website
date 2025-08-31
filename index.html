@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MON</title>
   <style>
     body {
@@ -12,6 +12,7 @@
       color: #f1f1f1;
       line-height: 1.6;
       overflow-x: hidden;
+      animation: backgroundFade 10s infinite alternate;
     }
     header {
       text-align: center;
@@ -102,6 +103,12 @@
     @keyframes pulseGlow {
       0% { text-shadow: 0 0 5px gold; }
       100% { text-shadow: 0 0 20px gold; }
+    }
+
+    @keyframes backgroundFade {
+      0%   { background-color: #000000; }
+      50%  { background-color: #1a0000; }
+      100% { background-color: #000000; }
     }
 
     /* Particle canvas */
