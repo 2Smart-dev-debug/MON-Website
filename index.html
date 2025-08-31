@@ -8,7 +8,13 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #000;
+      /* Smooth vertical gradient from dark red at top to black at bottom */
+      background: linear-gradient(
+        to bottom,
+        #5a0000,       /* dark red */
+        #1a0000 50%,   /* darker red */
+        #000000 100%   /* black */
+      );
       color: #f1f1f1;
       line-height: 1.6;
       overflow-x: hidden;
@@ -16,7 +22,7 @@
     header {
       text-align: center;
       padding: 4rem 2rem;
-      background: linear-gradient(135deg, #000, #1a0000);
+      background: rgba(90, 0, 0, 0.6); /* translucent dark red */
       position: relative;
       z-index: 2;
     }
@@ -55,18 +61,8 @@
       margin: auto;
       position: relative;
       z-index: 2;
+      background: transparent; /* transparent so body gradient shows through */
     }
-
-    /* About section with semi-transparent background fade */
-    #about {
-      background: linear-gradient(
-        to bottom,
-        rgba(26, 0, 0, 0.8),   /* dark red, 80% opacity */
-        rgba(0, 0, 0, 0.8)     /* black, 80% opacity */
-      );
-      color: #f1f1f1;
-    }
-
     section h2 {
       color: gold;
       text-align: center;
