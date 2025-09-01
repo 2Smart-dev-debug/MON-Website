@@ -208,7 +208,6 @@
 
     #closeLeaks:hover { color: silver; text-shadow: 0 0 12px silver; }
 
-    /* Mobile responsiveness */
     @media(max-width:600px) {
       #leaksPanel { width: 100% !important; }
       header h1 { font-size: 3rem; }
@@ -324,28 +323,51 @@
     const leaksContent = document.getElementById('leaksContent');
 
     // Example leaks array (replace with your own)
-    const leaks = [
-      { type: 'image', src: 'leak1.png' },
-      { type: 'image', src: 'leak2.png' },
-      { type: 'video', src: 'leak1.mp4' },
-      { type: 'image', src: 'leak3.png' }
+    let leaks = [
+      // { type: 'image', src: 'leak1.png' },
+      // { type: 'image', src: 'leak2.png' },
+      // { type: 'video', src: 'leak1.mp4' },
+      // { type: 'image', src: 'leak3.png' }
     ];
 
-    leaks.forEach(item => {
-      let el;
-      if(item.type === 'image'){
-        el = document.createElement('img');
-        el.src = item.src;
-      } else if(item.type === 'video'){
-        el = document.createElement('video');
-        el.src = item.src;
-        el.controls = true;
+    function updateLeaks() {
+      leaksContent.innerHTML = '';
+
+      if (leaks.length === 0) {
+        const message = document.createElement('p');
+        message.textContent = 'We are still working!';
+        message.style.textAlign = 'center';
+        message.style.fontSize = '1.5rem';
+        message.style.color = 'gold';
+        message.style.marginTop = '2rem';
+        leaksContent.appendChild(message);
+      } else {
+        leaks.forEach(item => {
+          let el;
+          if(item.type === 'image'){
+            el = document.createElement('img');
+            el.src = item.src;
+          } else if(item.type === 'video'){
+            el = document.createElement('video');
+            el.src = item.src;
+            el.controls = true;
+          }
+          leaksContent.appendChild(el);
+        });
       }
-      leaksContent.appendChild(el);
-    });
+    }
+
+    // Initial render
+    updateLeaks();
 
     leaksBtn.addEventListener('click', () => leaksPanel.style.width = window.innerWidth <= 600 ? '100%' : '400px');
     closeLeaks.addEventListener('click', () => leaksPanel.style.width = '0');
+
+    // Example: dynamically add a leak after 5 seconds
+    // setTimeout(() => {
+    //   leaks.push({ type: 'image', src: 'leak1.png' });
+    //   updateLeaks();
+    // }, 5000);
   </script>
 </body>
 </html>
