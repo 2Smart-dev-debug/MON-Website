@@ -7,46 +7,47 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Orbitron', Arial, sans-serif;
       color: #f1f1f1;
       line-height: 1.6;
       overflow-x: hidden;
       background-color: #000;
     }
 
+    /* Header */
     header {
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 5rem 2rem;
       position: relative;
       z-index: 2;
-      background: linear-gradient(to bottom, #1a0000 0%, #1a0000 70%, rgba(26, 0, 0, 0) 100%);
+      background: linear-gradient(to bottom, #1a0000 0%, #330000 80%, rgba(26, 0, 0, 0) 100%);
     }
 
     header h1 {
-      font-size: 3.5rem;
+      font-size: 4rem;
       color: gold;
-      text-shadow: 0 0 15px gold;
+      text-shadow: 0 0 20px gold, 0 0 40px darkred;
       animation: pulseGlow 2s infinite alternate;
     }
 
     header p {
-      font-size: 1.4rem;
-      margin: 1rem 0;
+      font-size: 1.5rem;
+      margin: 1.5rem 0;
+      color: #fdd835;
     }
 
     .cta-btn, .tab-btn {
       display: inline-block;
-      margin-top: 1rem;
-      padding: 1rem 2.5rem;
-      background: darkred;
+      margin: 1rem 0.5rem 0;
+      padding: 1rem 3rem;
+      background: linear-gradient(45deg, darkred, #660000);
       color: silver;
       font-weight: bold;
       text-decoration: none;
-      border-radius: 10px;
-      font-size: 1.3rem;
-      box-shadow: 0 0 15px darkred;
-      transition: 0.3s;
-      animation: pulseGlow 3s infinite alternate;
+      border-radius: 12px;
+      font-size: 1.4rem;
+      box-shadow: 0 0 20px darkred;
+      transition: all 0.3s ease;
       cursor: pointer;
       border: none;
     }
@@ -54,13 +55,15 @@
     .cta-btn:hover, .tab-btn:hover {
       background: gold;
       color: black;
-      box-shadow: 0 0 20px gold;
+      box-shadow: 0 0 30px gold, 0 0 60px #ffcc00;
+      transform: scale(1.1);
     }
 
-    #about, #gallery, #download {
-      padding: 4rem 2rem;
+    section {
+      padding: 5rem 2rem;
       position: relative;
       z-index: 2;
+      scroll-margin-top: 80px;
     }
 
     #about {
@@ -79,27 +82,52 @@
     h2 {
       color: gold;
       text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-      text-shadow: 0 0 12px gold;
+      margin-bottom: 3rem;
+      font-size: 2.8rem;
+      text-shadow: 0 0 15px gold, 0 0 30px darkred;
       animation: pulseGlow 2.5s infinite alternate;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+
+    ul li {
+      margin: 1rem 0;
+      font-size: 1.3rem;
+      background: rgba(255, 215, 0, 0.05);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    ul li:hover {
+      background: rgba(255, 215, 0, 0.15);
+      transform: translateX(5px);
     }
 
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .gallery img {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 0 15px #000;
-      transition: transform 0.3s;
+      box-shadow: 0 0 20px #000;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
 
     .gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.08) rotate(1deg);
+      box-shadow: 0 0 30px gold;
     }
 
     footer {
@@ -112,24 +140,25 @@
     }
 
     .social-links a {
-      margin: 0 10px;
+      margin: 0 12px;
       color: gold;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       transition: 0.3s;
     }
 
     .social-links a:hover {
       color: silver;
-      text-shadow: 0 0 8px silver;
+      text-shadow: 0 0 12px silver;
     }
 
     @keyframes pulseGlow {
-      0% { text-shadow: 0 0 5px gold; }
-      100% { text-shadow: 0 0 20px gold; }
+      0% { text-shadow: 0 0 10px gold, 0 0 20px darkred; }
+      100% { text-shadow: 0 0 25px gold, 0 0 50px darkred; }
     }
 
+    /* Particle canvas */
     #particles {
       position: fixed;
       top: 0;
@@ -139,7 +168,13 @@
       z-index: 1;
       pointer-events: none;
     }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas id="particles"></canvas>
@@ -153,9 +188,7 @@
 
   <section id="about">
     <h2>About the Game</h2>
-    <p>
-      Step into a world built for fun, freedom, and community! In <strong>MON</strong>, you’ll swing, climb, and explore across unique environments...
-    </p>
+    <p>Step into a world built for fun, freedom, and community! In <strong>MON</strong>, you’ll swing, climb, and explore across unique environments...</p>
     <ul>
       <li>🏞️ Expansive maps to climb, swing, and explore</li>
       <li>🛍️ Shops with unlockable cosmetics and collectibles</li>
@@ -184,7 +217,7 @@
   </footer>
 
   <script>
-    // Load screenshots
+    // Load screenshots dynamically
     const gallery = document.getElementById("screenshot-gallery");
     const totalScreenshots = 10;
     for (let i = 1; i <= totalScreenshots; i++) {
@@ -202,14 +235,14 @@
     canvas.height = window.innerHeight;
 
     const particles = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 150; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 3 + 1,
-        speed: Math.random() * 1 + 0.5,
-        opacity: Math.random(),
-        fade: Math.random() * 0.02 + 0.01,
+        speed: Math.random() * 1.2 + 0.3,
+        opacity: Math.random() * 0.8 + 0.2,
+        fade: Math.random() * 0.015 + 0.005,
       });
     }
 
@@ -225,7 +258,7 @@
         if (p.y > canvas.height) p.y = 0;
 
         p.opacity += p.fade * (Math.random() > 0.5 ? 1 : -1);
-        p.opacity = Math.max(0.1, Math.min(1, p.opacity));
+        p.opacity = Math.max(0.2, Math.min(1, p.opacity));
       }
       requestAnimationFrame(animateParticles);
     }
@@ -238,3 +271,4 @@
   </script>
 </body>
 </html>
+
