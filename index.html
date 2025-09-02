@@ -169,10 +169,24 @@
       right: 0;
       background-color: #111;
       overflow-x: hidden;
-      transition: 0.5s;
+      transition: transform 0.5s ease, width 0.5s ease;
+      transform: translateX(100%);
       padding-top: 60px;
       z-index: 20;
       color: #f1f1f1;
+    }
+
+    #leaksPanel.open {
+      width: 400px;
+      transform: translateX(0);
+    }
+
+    @media(max-width:600px) {
+      #leaksPanel.open {
+        width: 100%;
+      }
+      header h1 { font-size: 3rem; }
+      header p { font-size: 1.2rem; }
     }
 
     #leaksPanel h2 {
@@ -208,10 +222,14 @@
 
     #closeLeaks:hover { color: silver; text-shadow: 0 0 12px silver; }
 
-    @media(max-width:600px) {
-      #leaksPanel { width: 100% !important; }
-      header h1 { font-size: 3rem; }
-      header p { font-size: 1.2rem; }
+    /* Overlay */
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 15;
+      display: none;
     }
   </style>
 </head>
@@ -232,6 +250,9 @@
     <h2>Leaks</h2>
     <div class="leaksContent" id="leaksContent"></div>
   </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
 
   <section id="about">
     <h2>About the Game</h2>
@@ -321,18 +342,12 @@
     const leaksPanel = document.getElementById('leaksPanel');
     const closeLeaks = document.getElementById('closeLeaks');
     const leaksContent = document.getElementById('leaksContent');
+    const overlay = document.getElementById('overlay');
 
-    // Example leaks array (replace with your own)
-    let leaks = [
-      // { type: 'image', src: 'leak1.png' },
-      // { type: 'image', src: 'leak2.png' },
-      // { type: 'video', src: 'leak1.mp4' },
-      // { type: 'image', src: 'leak3.png' }
-    ];
+    let leaks = []; // Add your leaks here
 
     function updateLeaks() {
       leaksContent.innerHTML = '';
-
       if (leaks.length === 0) {
         const message = document.createElement('p');
         message.textContent = 'We are still working!';
@@ -357,17 +372,20 @@
       }
     }
 
-    // Initial render
     updateLeaks();
 
-    leaksBtn.addEventListener('click', () => leaksPanel.style.width = window.innerWidth <= 600 ? '100%' : '400px');
-    closeLeaks.addEventListener('click', () => leaksPanel.style.width = '0');
+    leaksBtn.addEventListener('click', () => {
+      leaksPanel.classList.add('open');
+      overlay.style.display = 'block';
+    });
 
-    // Example: dynamically add a leak after 5 seconds
-    // setTimeout(() => {
-    //   leaks.push({ type: 'image', src: 'leak1.png' });
-    //   updateLeaks();
-    // }, 5000);
+    function closeLeaksPanel() {
+      leaksPanel.classList.remove('open');
+      overlay.style.display = 'none';
+    }
+
+    closeLeaks.addEventListener('click', closeLeaksPanel);
+    overlay.addEventListener('click', closeLeaksPanel);
   </script>
 </body>
 </html>
