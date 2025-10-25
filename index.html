@@ -3,16 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MON</title>
+  <title>ECLIPSE VR</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    :root{
+      --deep-blue: #071733;
+      --mid-blue: #0b3d91;
+      --accent-silver: #c7cbd0;
+      --muted-silver: #9aa0a6;
+      --bg: #020417;
+      --glass: rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Orbitron', Arial, sans-serif;
-      color: #f1f1f1;
+      color: var(--accent-silver);
       line-height: 1.6;
       overflow-x: hidden;
-      background-color: #000;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(11,61,145,0.08), transparent 10%),
+                  linear-gradient(180deg, var(--bg) 0%, #000 100%);
+      min-height: 100vh;
     }
 
     /* Header */
@@ -21,135 +36,146 @@
       padding: 5rem 2rem;
       position: relative;
       z-index: 2;
-      background: linear-gradient(to bottom, #1a0000 0%, #330000 80%, rgba(26, 0, 0, 0) 100%);
+      background: linear-gradient(180deg, rgba(11,61,145,0.06) 0%, rgba(7,23,51,0.12) 60%, transparent 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(2px);
     }
 
     header h1 {
       font-size: 4rem;
-      color: gold;
-      text-shadow: 0 0 20px gold, 0 0 40px darkred;
-      animation: pulseGlow 2s infinite alternate;
+      color: var(--accent-silver);
+      letter-spacing: 2px;
+      text-shadow: 0 6px 30px rgba(11,61,145,0.15), 0 2px 6px rgba(0,0,0,0.6);
+      margin: 0;
+      display: inline-block;
     }
 
-    header p {
-      font-size: 1.5rem;
-      margin: 1.5rem 0;
-      color: #fdd835;
+    header p.tagline {
+      font-size: 1.25rem;
+      margin: 0.8rem 0 1.6rem;
+      color: var(--muted-silver);
     }
 
     .cta-btn, .tab-btn {
       display: inline-block;
-      margin: 1rem 0.5rem 0;
-      padding: 1rem 3rem;
-      background: linear-gradient(45deg, darkred, #660000);
-      color: silver;
-      font-weight: bold;
+      margin: 0.6rem 0.45rem 0;
+      padding: 0.9rem 2.4rem;
+      background: linear-gradient(180deg, var(--mid-blue), rgba(11,61,145,0.85));
+      color: white;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 12px;
-      font-size: 1.4rem;
-      box-shadow: 0 0 20px darkred;
-      transition: all 0.3s ease;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      box-shadow: 0 6px 30px rgba(11,61,145,0.18);
+      transition: all 0.22s ease;
       cursor: pointer;
-      border: none;
+      border: 1px solid rgba(255,255,255,0.04);
     }
 
     .cta-btn:hover, .tab-btn:hover {
-      background: gold;
-      color: black;
-      box-shadow: 0 0 30px gold, 0 0 60px #ffcc00;
-      transform: scale(1.1);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 48px rgba(11,61,145,0.28), 0 0 40px rgba(7,61,145,0.08);
     }
 
     section {
-      padding: 5rem 2rem;
+      padding: 4.5rem 2rem;
       position: relative;
       z-index: 2;
       scroll-margin-top: 80px;
     }
 
-    #about { background-color: #000; }
-    #gallery { background: linear-gradient(to bottom, rgba(51,0,51,0) 0%, #330033 30%, #330033 100%); }
-    #download { background: linear-gradient(to bottom, #330033 0%, #330033 70%, #000 100%); text-align: center; }
+    #about { background: linear-gradient(180deg, transparent 0%, rgba(7,23,51,0.03) 100%); }
+    #gallery { background: linear-gradient(180deg, rgba(7,23,51,0.02) 0%, rgba(11,61,145,0.03) 40%, transparent 100%); }
+    #download { background: linear-gradient(180deg, rgba(11,61,145,0.02) 0%, rgba(0,0,0,0.02) 100%); text-align: center; }
 
     h2 {
-      color: gold;
+      color: var(--accent-silver);
       text-align: center;
-      margin-bottom: 3rem;
-      font-size: 2.8rem;
-      text-shadow: 0 0 15px gold, 0 0 30px darkred;
-      animation: pulseGlow 2.5s infinite alternate;
+      margin-bottom: 2.5rem;
+      font-size: 2.4rem;
+      text-shadow: 0 4px 20px rgba(11,61,145,0.06);
+    }
+
+    .lead {
+      max-width: 900px;
+      margin: 0.5rem auto 1.6rem;
+      color: var(--muted-silver);
+      font-size: 1.1rem;
     }
 
     ul {
       list-style: none;
       padding: 0;
-      max-width: 700px;
+      max-width: 780px;
       margin: 2rem auto;
     }
 
     ul li {
-      margin: 1rem 0;
-      font-size: 1.3rem;
-      background: rgba(255, 215, 0, 0.05);
-      padding: 0.8rem 1rem;
+      margin: 0.9rem 0;
+      font-size: 1.15rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));
+      padding: 0.85rem 1rem;
       border-radius: 8px;
-      transition: 0.3s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.02);
+      color: var(--accent-silver);
     }
 
     ul li:hover {
-      background: rgba(255, 215, 0, 0.15);
-      transform: translateX(5px);
+      transform: translateX(6px);
+      box-shadow: 0 8px 30px rgba(11,61,145,0.06);
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1rem;
     }
 
     .gallery img {
       width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #000;
-      transition: transform 0.3s, box-shadow 0.3s;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+      transition: transform 0.25s, box-shadow 0.25s;
       cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
     .gallery img:hover {
-      transform: scale(1.08) rotate(1deg);
-      box-shadow: 0 0 30px gold;
+      transform: scale(1.04);
+      box-shadow: 0 10px 40px rgba(11,61,145,0.18);
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      background: #111;
+      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(7,23,51,0.03));
       margin-top: 2rem;
       position: relative;
       z-index: 2;
+      border-top: 1px solid rgba(255,255,255,0.02);
     }
 
     .social-links a {
       margin: 0 12px;
-      color: gold;
+      color: var(--accent-silver);
       text-decoration: none;
-      font-weight: bold;
-      font-size: 1.3rem;
-      transition: 0.3s;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: 0.2s;
     }
 
     .social-links a:hover {
-      color: silver;
-      text-shadow: 0 0 12px silver;
+      color: white;
+      text-shadow: 0 6px 20px rgba(11,61,145,0.14);
     }
 
-    @keyframes pulseGlow {
-      0% { text-shadow: 0 0 10px gold, 0 0 20px darkred; }
-      100% { text-shadow: 0 0 25px gold, 0 0 50px darkred; }
-    }
-
+    /* Particles / faint orbs */
     #particles {
       position: fixed;
       top: 0; left: 0;
@@ -158,8 +184,6 @@
       pointer-events: none;
     }
 
-    html { scroll-behavior: smooth; }
-
     /* Side panel for leaks */
     #leaksPanel {
       height: 100%;
@@ -167,69 +191,68 @@
       position: fixed;
       top: 0;
       right: 0;
-      background-color: #111;
+      background: linear-gradient(180deg, rgba(7,23,51,0.98), rgba(2,4,23,0.98));
       overflow-x: hidden;
-      transition: transform 0.5s ease, width 0.5s ease;
+      transition: transform 0.45s ease, width 0.45s ease;
       transform: translateX(100%);
       padding-top: 60px;
       z-index: 20;
-      color: #f1f1f1;
+      color: var(--accent-silver);
+      border-left: 1px solid rgba(255,255,255,0.02);
     }
 
     #leaksPanel.open {
-      width: 400px;
+      width: 420px;
       transform: translateX(0);
-    }
-
-    @media(max-width:600px) {
-      #leaksPanel.open {
-        width: 100%;
-      }
-      header h1 { font-size: 3rem; }
-      header p { font-size: 1.2rem; }
-    }
-
-    #leaksPanel h2 {
-      text-align: center;
-      color: gold;
-      font-size: 2rem;
-      text-shadow: 0 0 12px gold, 0 0 24px darkred;
-      margin-bottom: 2rem;
-    }
-
-    #leaksPanel .leaksContent {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      padding: 0 1.5rem;
-    }
-
-    #leaksPanel img, #leaksPanel video {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px gold;
     }
 
     #closeLeaks {
       position: absolute;
       top: 20px;
       right: 25px;
-      font-size: 3rem;
+      font-size: 2.4rem;
       cursor: pointer;
-      color: gold;
-      transition: 0.3s;
+      color: var(--accent-silver);
+      transition: 0.2s;
     }
 
-    #closeLeaks:hover { color: silver; text-shadow: 0 0 12px silver; }
+    #closeLeaks:hover { color: white; transform: scale(1.05); }
+
+    #leaksPanel h2 {
+      text-align: center;
+      color: var(--accent-silver);
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    #leaksPanel .leaksContent {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+      padding: 0 1.25rem;
+    }
+
+    #leaksPanel img, #leaksPanel video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 8px 36px rgba(11,61,145,0.16);
+    }
 
     /* Overlay */
     #overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 6, 20, 0.6);
       z-index: 15;
       display: none;
+    }
+
+    @media(max-width:600px) {
+      header h1 { font-size: 2.6rem; }
+      header p.tagline { font-size: 1rem; }
+      #leaksPanel.open { width: 100%; }
+      .gallery img { height: 140px; }
     }
   </style>
 </head>
@@ -237,8 +260,8 @@
   <canvas id="particles"></canvas>
 
   <header>
-    <h1>MON</h1>
-    <p>Climb, swing, and hang out in a new VR adventure.</p>
+    <h1>ECLIPSE VR</h1>
+    <p class="tagline">Two worlds. One reality.</p>
     <a href="#download" class="cta-btn">Play Now</a>
     <a href="https://2smart-dev-debug.github.io/MON-Website/privacypolicy" class="tab-btn" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
     <button class="tab-btn" id="leaksBtn">View Leaks</button>
@@ -247,7 +270,7 @@
   <!-- Side panel for leaks -->
   <div id="leaksPanel">
     <span id="closeLeaks">&times;</span>
-    <h2>Leaks</h2>
+    <h2>Leaks & Previews</h2>
     <div class="leaksContent" id="leaksContent"></div>
   </div>
 
@@ -255,106 +278,125 @@
   <div id="overlay"></div>
 
   <section id="about">
-    <h2>About the Game</h2>
-    <p>Step into a world built for fun, freedom, and community! In <strong>MON</strong>, you’ll swing, climb, and explore across unique environments...</p>
+    <h2>About ECLIPSE VR</h2>
+    <p class="lead">ECLIPSE VR is a dual-mode VR experience built for both chill exploration and high-tension scares. Switch between <strong>Casual</strong> (relaxed social maps and creative spaces) and <strong>Horror</strong> (the same maps transformed into dark, atmospheric nightmares). Choose your mood — or bring friends and swap on the fly.</p>
     <ul>
-      <li>🏞️ Expansive maps to climb, swing, and explore</li>
-      <li>🛍️ Shops with unlockable cosmetics and collectibles</li>
-      <li>🎨 Fan Art and creative community spaces</li>
-      <li>🖤 Chill Room for hanging out and making friends</li>
-      <li>🏆 Future content and events, always something new coming soon</li>
+      <li>🌐 Two modes: Casual & Horror — same maps, different moods</li>
+      <li>🧭 Dynamic map transformations and environmental storytelling</li>
+      <li>🎭 Social hangouts, player-driven events, and creative spaces</li>
+      <li>👻 Horror mode features adaptive lighting, soundscapes, and tension-driven events</li>
+      <li>⚙️ Built for VR — optimized for comfort and immersion</li>
     </ul>
   </section>
 
   <section id="gallery">
-    <h2>Screenshots</h2>
+    <h2>Screenshots & Concept Art</h2>
     <div class="gallery" id="screenshot-gallery"></div>
   </section>
 
   <section id="download">
-    <h2>Get the Game</h2>
+    <h2>Get ECLIPSE VR</h2>
+    <p class="lead">Available soon on major VR storefronts. Stay tuned for the Meta Store release and public builds. Join our community to get early access and updates.</p>
     <p><a href="YOUR_META_STORE_LINK" class="cta-btn">Download on Meta Store</a></p>
   </section>
 
   <footer>
     <p>© 2025 2SmartStudios</p>
     <div class="social-links">
-      <a href="https://discord.gg/UHVYPmMNzD">Discord</a>
-      <a href="https://www.tiktok.com/@2.smart_fr">TikTok</a>
+      <a href="https://discord.gg/UHVYPmMNzD" target="_blank" rel="noopener noreferrer">Discord</a>
+      <a href="https://www.tiktok.com/@2.smart_fr" target="_blank" rel="noopener noreferrer">TikTok</a>
     </div>
   </footer>
 
   <script>
-    // Load screenshots dynamically
+    /* -------------------------
+       Dynamic gallery thumbnails
+       ------------------------- */
     const gallery = document.getElementById("screenshot-gallery");
     const totalScreenshots = 10;
     for (let i = 1; i <= totalScreenshots; i++) {
       const img = document.createElement("img");
       img.src = `screenshot${i}.png`;
-      img.alt = `Screenshot ${i}`;
+      img.alt = `ECLIPSE VR Screenshot ${i}`;
       img.onerror = () => img.remove();
       gallery.appendChild(img);
     }
 
-    // Particle animation
+    /* -------------------------
+       Faint particle/orb animation
+       ------------------------- */
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
 
-    const particles = [];
-    for (let i = 0; i < 150; i++) {
-      particles.push({
+    const orbs = [];
+    const ORB_COUNT = Math.max(60, Math.floor(window.innerWidth / 20));
+
+    for (let i = 0; i < ORB_COUNT; i++) {
+      orbs.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 3 + 1,
-        speed: Math.random() * 1.2 + 0.3,
-        opacity: Math.random() * 0.8 + 0.2,
-        fade: Math.random() * 0.015 + 0.005,
+        r: Math.random() * 2.6 + 0.6,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() * 0.4) + 0.05,
+        alpha: Math.random() * 0.5 + 0.05
       });
     }
 
-    function animateParticles() {
+    function drawOrbs() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let p of particles) {
+      for (let o of orbs) {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 215, 0, ${p.opacity})`;
+        const grd = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r * 8);
+        grd.addColorStop(0, `rgba(179,192,204, ${o.alpha})`); // silver-ish
+        grd.addColorStop(1, `rgba(11,61,145, 0)`);
+        ctx.fillStyle = grd;
+        ctx.arc(o.x, o.y, o.r * 6, 0, Math.PI * 2);
         ctx.fill();
 
-        p.y += p.speed;
-        if (p.y > canvas.height) p.y = 0;
-
-        p.opacity += p.fade * (Math.random() > 0.5 ? 1 : -1);
-        p.opacity = Math.max(0.2, Math.min(1, p.opacity));
+        o.x += o.vx;
+        o.y += o.vy;
+        if (o.y > canvas.height + 30) o.y = -40;
+        if (o.x > canvas.width + 30) o.x = -40;
+        if (o.x < -30) o.x = canvas.width + 30;
       }
-      requestAnimationFrame(animateParticles);
+      requestAnimationFrame(drawOrbs);
     }
-    animateParticles();
+    drawOrbs();
 
     window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      resizeCanvas();
     });
 
-    // Leaks side panel
+    /* -------------------------
+       Leaks side panel logic
+       ------------------------- */
     const leaksBtn = document.getElementById('leaksBtn');
     const leaksPanel = document.getElementById('leaksPanel');
     const closeLeaks = document.getElementById('closeLeaks');
     const leaksContent = document.getElementById('leaksContent');
     const overlay = document.getElementById('overlay');
 
-    let leaks = []; // Add your leaks here
+    // Add leaks/previews here as objects { type: 'image'|'video', src: 'path' }
+    let leaks = [
+      // Example entries (commented out) - remove comments and update sources when ready:
+      // { type: 'image', src: 'leak1.png' },
+      // { type: 'video', src: 'preview1.mp4' }
+    ];
 
     function updateLeaks() {
       leaksContent.innerHTML = '';
       if (leaks.length === 0) {
         const message = document.createElement('p');
-        message.textContent = 'We are still working!';
+        message.textContent = 'No previews yet — development in progress.';
         message.style.textAlign = 'center';
-        message.style.fontSize = '1.5rem';
-        message.style.color = 'gold';
-        message.style.marginTop = '2rem';
+        message.style.fontSize = '1rem';
+        message.style.color = 'var(--muted-silver)';
+        message.style.margin = '2rem 0';
         leaksContent.appendChild(message);
       } else {
         leaks.forEach(item => {
@@ -362,10 +404,12 @@
           if(item.type === 'image'){
             el = document.createElement('img');
             el.src = item.src;
+            el.alt = 'Leak image';
           } else if(item.type === 'video'){
             el = document.createElement('video');
             el.src = item.src;
             el.controls = true;
+            el.playsInline = true;
           }
           leaksContent.appendChild(el);
         });
