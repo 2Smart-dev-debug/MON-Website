@@ -1,313 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MONKLEX</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MONKLEX</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --deep-blue: #0a0020;
-      --mid-blue: #4cc3ff;
-      --accent-silver: #d7d7ff;
-      --muted-silver: #b0b0d8;
-      --bg: #050010;
-      --glass: rgba(255,255,255,0.03);
+<style>
+:root{
+  --deep-blue: #0a0020;
+  --mid-blue: #8d4cff;
+  --accent-silver: #d7d7ff;
+  --muted-silver: #b0b0d8;
+  --bg: #050010;
+  --glass: rgba(255,255,255,0.03);
+}
 
-      /* NEW MONKLEX COLORS */
-      --monklex-purple: #8d4cff;
-      --monklex-blue: #4cc3ff;
-    }
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
-    * { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Orbitron', Arial, sans-serif;
+  color: var(--accent-silver);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(141,76,255,0.08), transparent 10%),
+              linear-gradient(180deg, var(--bg) 0%, #000 100%);
+  min-height: 100vh;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Orbitron', Arial, sans-serif;
-      color: var(--accent-silver);
-      line-height: 1.6;
-      overflow-x: hidden;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(140,76,255,0.07), transparent 10%),
-                  linear-gradient(180deg, var(--bg) 0%, #000 100%);
-      min-height: 100vh;
-    }
+/* Header */
+header {
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(141,76,255,0.06) 0%, rgba(20,7,51,0.12) 60%, transparent 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  backdrop-filter: blur(2px);
+}
 
-    /* Header */
-    header {
-      text-align: center;
-      padding: 5rem 2rem;
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(180deg, rgba(140,76,255,0.08) 0%, rgba(20,10,40,0.16) 60%, transparent 100%);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      backdrop-filter: blur(2px);
-    }
+header h1 {
+  font-size: 4rem;
+  color: var(--accent-silver);
+  letter-spacing: 2px;
+  text-shadow: 0 6px 30px rgba(141,76,255,0.15), 0 2px 6px rgba(0,0,0,0.6);
+  margin: 0;
+  display: inline-block;
+}
 
-    header h1 {
-      font-size: 4rem;
-      color: var(--accent-silver);
-      letter-spacing: 2px;
-      text-shadow: 0 6px 30px rgba(140,76,255,0.2), 0 2px 6px rgba(0,0,0,0.6);
-      margin: 0;
-      display: inline-block;
-    }
+header p.tagline {
+  font-size: 1.25rem;
+  margin: 0.8rem 0 1.6rem;
+  color: var(--muted-silver);
+}
 
-    header p.tagline {
-      font-size: 1.25rem;
-      margin: 0.8rem 0 1.6rem;
-      color: var(--muted-silver);
-    }
+.cta-btn, .tab-btn {
+  display: inline-block;
+  margin: 0.6rem 0.45rem 0;
+  padding: 0.9rem 2.4rem;
+  background: linear-gradient(180deg, var(--mid-blue), rgba(141,76,255,0.85));
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  box-shadow: 0 6px 30px rgba(141,76,255,0.18);
+  transition: all 0.22s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.04);
+}
 
-    /* Buttons */
-    .cta-btn, .tab-btn {
-      display: inline-block;
-      margin: 0.6rem 0.45rem 0;
-      padding: 0.9rem 2.4rem;
-      background: linear-gradient(180deg, var(--monklex-purple), var(--monklex-blue));
-      color: white;
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 10px;
-      font-size: 1.05rem;
-      box-shadow: 0 6px 30px rgba(140,76,255,0.25);
-      transition: all 0.22s ease;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
+.cta-btn:hover, .tab-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 48px rgba(141,76,255,0.28), 0 0 40px rgba(141,76,255,0.12);
+}
 
-    .cta-btn:hover, .tab-btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 40px rgba(140,76,255,0.35), 0 0 40px rgba(76,195,255,0.25);
-    }
+section {
+  padding: 4.5rem 2rem;
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 80px;
+}
 
-    section {
-      padding: 4.5rem 2rem;
-      position: relative;
-      z-index: 2;
-      scroll-margin-top: 80px;
-    }
+#about {
+  background: linear-gradient(180deg, transparent 0%, rgba(141,76,255,0.03) 100%);
+}
 
-    h2 {
-      color: var(--accent-silver);
-      text-align: center;
-      margin-bottom: 2.5rem;
-      font-size: 2.4rem;
-      text-shadow: 0 4px 20px rgba(140,76,255,0.14);
-    }
+#gallery {
+  background: linear-gradient(180deg, rgba(141,76,255,0.02) 0%, rgba(141,76,255,0.03) 40%, transparent 100%);
+}
 
-    .lead {
-      max-width: 900px;
-      margin: 0.5rem auto 1.6rem;
-      color: var(--muted-silver);
-      font-size: 1.1rem;
-    }
+#download {
+  background: linear-gradient(180deg, rgba(141,76,255,0.02) 0%, rgba(0,0,0,0.02) 100%);
+  text-align: center;
+}
 
-    /* Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
+h2 {
+  color: var(--accent-silver);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.4rem;
+  text-shadow: 0 4px 20px rgba(141,76,255,0.12);
+}
 
-    .gallery img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.6);
-      transition: transform 0.25s, box-shadow 0.25s;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
+.lead {
+  max-width: 900px;
+  margin: 0.5rem auto 1.6rem;
+  color: var(--muted-silver);
+  font-size: 1.1rem;
+}
 
-    .gallery img:hover {
-      transform: scale(1.04);
-      box-shadow: 0 10px 40px rgba(140,76,255,0.25);
-    }
+ul {
+  list-style: none;
+  padding: 0;
+  max-width: 780px;
+  margin: 2rem auto;
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      margin-top: 2rem;
-      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(30,10,50,0.04));
-    }
+ul li {
+  margin: 0.9rem 0;
+  font-size: 1.15rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.02);
+  color: var(--accent-silver);
+}
 
-    .social-links a {
-      margin: 0 12px;
-      color: var(--accent-silver);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.05rem;
-    }
+ul li:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 30px rgba(141,76,255,0.10);
+}
 
-    .social-links a:hover {
-      color: white;
-      text-shadow: 0 6px 20px rgba(140,76,255,0.3);
-    }
-  </style>
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.gallery img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 40px rgba(141,76,255,0.18);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(141,76,255,0.03));
+  margin-top: 2rem;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+.social-links a {
+  margin: 0 12px;
+  color: var(--accent-silver);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: 0.2s;
+}
+
+.social-links a:hover {
+  color: white;
+  text-shadow: 0 6px 20px rgba(141,76,255,0.18);
+}
+
+/* Particles */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Side panel */
+#leaksPanel {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(20,7,51,0.98), rgba(5,0,16,0.98));
+  overflow-x: hidden;
+  transition: transform 0.45s ease, width 0.45s ease;
+  transform: translateX(100%);
+  padding-top: 60px;
+  z-index: 20;
+  color: var(--accent-silver);
+  border-left: 1px solid rgba(255,255,255,0.02);
+}
+
+#leaksPanel.open {
+  width: 420px;
+  transform: translateX(0);
+}
+
+#closeLeaks {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 2.4rem;
+  cursor: pointer;
+  color: var(--accent-silver);
+  transition: 0.2s;
+}
+
+#closeLeaks:hover {
+  color: white;
+  transform: scale(1.05);
+}
+
+#leaksPanel h2 {
+  text-align: center;
+  color: var(--accent-silver);
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+}
+
+#leaksPanel .leaksContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  padding: 0 1.25rem;
+}
+
+#leaksPanel img, #leaksPanel video {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 36px rgba(141,76,255,0.16);
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10,0,32,0.6);
+  z-index: 15;
+  display: none;
+}
+
+@media(max-width:600px) {
+  header h1 { font-size: 2.6rem; }
+  header p.tagline { font-size: 1rem; }
+  #leaksPanel.open { width: 100%; }
+  .gallery img { height: 140px; }
+}
+</style>
 </head>
 
 <body>
 
-  <canvas id="particles"></canvas>
+<canvas id="particles"></canvas>
 
-  <header>
-    <h1>MONKLEX</h1>
-    <p class="tagline">Enter the Neon VR Realm.</p>
-    <a href="#download" class="cta-btn">Play Monklex</a>
-    <a href="https://2smart-dev-debug.github.io/MON-Website/privacypolicy" class="tab-btn" target="_blank">Privacy Policy</a>
-    <button class="tab-btn" id="leaksBtn">View Leaks</button>
-  </header>
+<header>
+  <h1>MONKLEX</h1>
+  <p class="tagline">One world. Multiple games.</p>
+  <a href="#download" class="cta-btn">Play Now</a>
+  <a href="https://2smart-dev-debug.github.io/MON-Website/privacypolicy" class="tab-btn" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+  <button class="tab-btn" id="leaksBtn">View Leaks</button>
+</header>
 
-  <!-- Side Panel -->
-  <div id="leaksPanel">
-    <span id="closeLeaks">&times;</span>
-    <h2>Monklex Leaks & Previews</h2>
-    <div class="leaksContent" id="leaksContent"></div>
+<div id="leaksPanel">
+  <span id="closeLeaks">&times;</span>
+  <h2>Leaks & Previews</h2>
+  <div class="leaksContent" id="leaksContent"></div>
+</div>
+
+<div id="overlay"></div>
+
+<section id="about">
+  <h2>About MONKLEX</h2>
+  <p class="lead">
+    MONKLEX is an immersive cyber-adventure VR game that blends futuristic exploration with strategic combat challenges.
+  </p>
+  <ul>
+    <li>🌐 Explore neon-lit megacities</li>
+    <li>🧭 Solve puzzles to unlock hidden areas</li>
+    <li>🎭 Team up with friends in co-op missions</li>
+    <li>👻 Dynamic AI-driven encounters</li>
+    <li>⚙️ Optimized for high-performance VR</li>
+  </ul>
+</section>
+
+<section id="gallery">
+  <h2>Screenshots & Concept Art</h2>
+  <div class="gallery" id="screenshot-gallery"></div>
+</section>
+
+<section id="download">
+  <h2>Get MONKLEX</h2>
+  <p class="lead">Available soon on major VR storefronts.</p>
+  <p><a href="#" class="cta-btn">Download on Meta Store</a></p>
+</section>
+
+<footer>
+  <p>© 2025 2SmartStudios</p>
+  <div class="social-links">
+    <a href="https://discord.gg/xqSesKFpVM" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="https://www.tiktok.com/@2.smart_fr" target="_blank" rel="noopener noreferrer">TikTok</a>
   </div>
+</footer>
 
-  <div id="overlay"></div>
+<script>
+/* ------------------------- Gallery ------------------------- */
+const gallery = document.getElementById("screenshot-gallery");
+const totalScreenshots = 10;
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About MONKLEX</h2>
-    <p class="lead">
-      MONKLEX is a fast-paced social VR experience focused on movement, cosmetics, and a neon sci-fi hub where players gather, compete, and flex their style.  
-      Unlock items, explore stylish futuristic zones, browse shops, and enjoy an evolving world built for fun, speed, and expression.
-    </p>
-    <ul>
-      <li>💠 Neon sci-fi hub with stylish environments</li>
-      <li>🧢 Tons of cosmetics + community-driven items</li>
-      <li>🎮 Fast-paced VR gameplay built around movement</li>
-      <li>🌐 Social hangouts + live announcements</li>
-      <li>📈 Progression, streak rewards, and more coming</li>
-    </ul>
-  </section>
+for (let i = 1; i <= totalScreenshots; i++) {
+  const img = document.createElement("img");
+  img.src = `screenshot${i}.png`;
+  img.alt = `MONKLEX Screenshot ${i}`;
+  img.onerror = () => img.remove();
+  gallery.appendChild(img);
+}
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <h2>Monklex Screenshots</h2>
-    <div class="gallery" id="screenshot-gallery"></div>
-  </section>
+/* ------------------------- Particles ------------------------- */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
 
-  <!-- DOWNLOAD -->
-  <section id="download" style="text-align:center;">
-    <h2>Get MONKLEX</h2>
-    <p class="lead">Coming soon to App Lab & major VR platforms. Join the community for updates.</p>
-    <p><a href="#" class="cta-btn">App Lab Coming Soon</a></p>
-  </section>
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
 
-  <footer>
-    <p>© 2025 MONKLEX</p>
-    <div class="social-links">
-      <a href="https://discord.gg/xqSesKFpVM" target="_blank">Discord</a>
-      <a href="https://www.tiktok.com/@2.smart_fr" target="_blank">TikTok</a>
-    </div>
-  </footer>
+const orbs = [];
+const ORB_COUNT = Math.max(60, Math.floor(window.innerWidth / 20));
 
-  <script>
-    /* GALLERY LOADER */
-    const gallery = document.getElementById("screenshot-gallery");
-    const totalScreenshots = 10;
+for (let i = 0; i < ORB_COUNT; i++) {
+  orbs.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2.6 + 0.6,
+    vx: (Math.random() - 0.5) * 0.25,
+    vy: (Math.random() * 0.4) + 0.05,
+    alpha: Math.random() * 0.5 + 0.05
+  });
+}
 
-    for (let i = 1; i <= totalScreenshots; i++) {
-      const img = document.createElement("img");
-      img.src = `monklex${i}.png`;
-      img.alt = `Monklex Screenshot ${i}`;
-      img.onerror = () => img.remove();
-      gallery.appendChild(img);
-    }
+function drawOrbs() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    /* PARTICLES (unchanged) */
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
+  for (let o of orbs) {
+    ctx.beginPath();
+    const grd = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r * 8);
+    grd.addColorStop(0, `rgba(200,170,255, ${o.alpha})`);
+    grd.addColorStop(1, `rgba(141,76,255, 0)`);
+    ctx.fillStyle = grd;
+    ctx.arc(o.x, o.y, o.r * 6, 0, Math.PI * 2);
+    ctx.fill();
 
-    function resizeCanvas(){
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
+    o.x += o.vx;
+    o.y += o.vy;
 
-    const orbs = [];
-    const ORB_COUNT = Math.max(60, Math.floor(window.innerWidth / 20));
+    if (o.y > canvas.height + 30) o.y = -40;
+    if (o.x > canvas.width + 30) o.x = -40;
+    if (o.x < -30) o.x = canvas.width + 30;
+  }
 
-    for (let i = 0; i < ORB_COUNT; i++) {
-      orbs.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2.6 + 0.6,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() * 0.4) + 0.05,
-        alpha: Math.random() * 0.5 + 0.05
-      });
-    }
+  requestAnimationFrame(drawOrbs);
+}
+drawOrbs();
 
-    function drawOrbs() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let o of orbs) {
-        ctx.beginPath();
-        const grd = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r * 8);
-        grd.addColorStop(0, `rgba(200,170,255, ${o.alpha})`);
-        grd.addColorStop(1, `rgba(140,76,255, 0)`);
-        ctx.fillStyle = grd;
-        ctx.arc(o.x, o.y, o.r * 6, 0, Math.PI * 2);
-        ctx.fill();
+window.addEventListener("resize", resizeCanvas);
 
-        o.x += o.vx;
-        o.y += o.vy;
+/* ------------------------- Leaks Panel ------------------------- */
+const leaksBtn = document.getElementById('leaksBtn');
+const leaksPanel = document.getElementById('leaksPanel');
+const closeLeaks = document.getElementById('closeLeaks');
+const leaksContent = document.getElementById('leaksContent');
+const overlay = document.getElementById('overlay');
 
-        if (o.y > canvas.height + 30) o.y = -40;
-        if (o.x > canvas.width + 30) o.x = -40;
-        if (o.x < -30) o.x = canvas.width + 30;
-      }
-      requestAnimationFrame(drawOrbs);
-    }
-    drawOrbs();
+let leaks = [];
 
-    window.addEventListener("resize", resizeCanvas);
+function updateLeaks() {
+  leaksContent.innerHTML = '';
+  if (leaks.length === 0) {
+    const message = document.createElement('p');
+    message.textContent = 'No previews yet — development in progress.';
+    message.style.textAlign = 'center';
+    message.style.fontSize = '1rem';
+    message.style.color = 'var(--muted-silver)';
+    message.style.margin = '2rem 0';
+    leaksContent.appendChild(message);
+  }
+}
 
-    /* LEAKS PANEL */
-    const leaksBtn = document.getElementById('leaksBtn');
-    const leaksPanel = document.getElementById('leaksPanel');
-    const closeLeaks = document.getElementById('closeLeaks');
-    const leaksContent = document.getElementById('leaksContent');
-    const overlay = document.getElementById('overlay');
+updateLeaks();
 
-    let leaks = [];
+leaksBtn.addEventListener('click', () => {
+  leaksPanel.classList.add('open');
+  overlay.style.display = 'block';
+});
 
-    function updateLeaks() {
-      leaksContent.innerHTML = '';
-      if (leaks.length === 0) {
-        const message = document.createElement('p');
-        message.textContent = 'No previews yet — development in progress.';
-        message.style.textAlign = 'center';
-        message.style.fontSize = '1rem';
-        message.style.color = 'var(--muted-silver)';
-        message.style.margin = '2rem 0';
-        leaksContent.appendChild(message);
-      }
-    }
+function closeLeaksPanel() {
+  leaksPanel.classList.remove('open');
+  overlay.style.display = 'none';
+}
 
-    updateLeaks();
+closeLeaks.addEventListener('click', closeLeaksPanel);
+overlay.addEventListener('click', closeLeaksPanel);
+</script>
 
-    leaksBtn.addEventListener('click', () => {
-      leaksPanel.classList.add('open');
-      overlay.style.display = 'block';
-    });
-
-    function closeLeaksPanel() {
-      leaksPanel.classList.remove('open');
-      overlay.style.display = 'none';
-    }
-
-    closeLeaks.addEventListener('click', closeLeaksPanel);
-    overlay.addEventListener('click', closeLeaksPanel);
-  </script>
 </body>
 </html>
