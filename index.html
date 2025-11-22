@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ECLIPSE VR</title>
+  <title>MONKLEX</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --deep-blue: #071733;
-      --mid-blue: #0b3d91;
-      --accent-silver: #c7cbd0;
-      --muted-silver: #9aa0a6;
-      --bg: #020417;
+      --deep-blue: #0a0020;
+      --mid-blue: #4cc3ff;
+      --accent-silver: #d7d7ff;
+      --muted-silver: #b0b0d8;
+      --bg: #050010;
       --glass: rgba(255,255,255,0.03);
+
+      /* NEW MONKLEX COLORS */
+      --monklex-purple: #8d4cff;
+      --monklex-blue: #4cc3ff;
     }
 
     html { scroll-behavior: smooth; }
-
     * { box-sizing: border-box; }
 
     body {
@@ -25,7 +30,7 @@
       color: var(--accent-silver);
       line-height: 1.6;
       overflow-x: hidden;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(11,61,145,0.08), transparent 10%),
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(140,76,255,0.07), transparent 10%),
                   linear-gradient(180deg, var(--bg) 0%, #000 100%);
       min-height: 100vh;
     }
@@ -36,7 +41,7 @@
       padding: 5rem 2rem;
       position: relative;
       z-index: 2;
-      background: linear-gradient(180deg, rgba(11,61,145,0.06) 0%, rgba(7,23,51,0.12) 60%, transparent 100%);
+      background: linear-gradient(180deg, rgba(140,76,255,0.08) 0%, rgba(20,10,40,0.16) 60%, transparent 100%);
       border-bottom: 1px solid rgba(255,255,255,0.03);
       backdrop-filter: blur(2px);
     }
@@ -45,7 +50,7 @@
       font-size: 4rem;
       color: var(--accent-silver);
       letter-spacing: 2px;
-      text-shadow: 0 6px 30px rgba(11,61,145,0.15), 0 2px 6px rgba(0,0,0,0.6);
+      text-shadow: 0 6px 30px rgba(140,76,255,0.2), 0 2px 6px rgba(0,0,0,0.6);
       margin: 0;
       display: inline-block;
     }
@@ -56,17 +61,18 @@
       color: var(--muted-silver);
     }
 
+    /* Buttons */
     .cta-btn, .tab-btn {
       display: inline-block;
       margin: 0.6rem 0.45rem 0;
       padding: 0.9rem 2.4rem;
-      background: linear-gradient(180deg, var(--mid-blue), rgba(11,61,145,0.85));
+      background: linear-gradient(180deg, var(--monklex-purple), var(--monklex-blue));
       color: white;
       font-weight: 700;
       text-decoration: none;
       border-radius: 10px;
       font-size: 1.05rem;
-      box-shadow: 0 6px 30px rgba(11,61,145,0.18);
+      box-shadow: 0 6px 30px rgba(140,76,255,0.25);
       transition: all 0.22s ease;
       cursor: pointer;
       border: 1px solid rgba(255,255,255,0.04);
@@ -74,7 +80,7 @@
 
     .cta-btn:hover, .tab-btn:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 48px rgba(11,61,145,0.28), 0 0 40px rgba(7,61,145,0.08);
+      box-shadow: 0 10px 40px rgba(140,76,255,0.35), 0 0 40px rgba(76,195,255,0.25);
     }
 
     section {
@@ -84,16 +90,12 @@
       scroll-margin-top: 80px;
     }
 
-    #about { background: linear-gradient(180deg, transparent 0%, rgba(7,23,51,0.03) 100%); }
-    #gallery { background: linear-gradient(180deg, rgba(7,23,51,0.02) 0%, rgba(11,61,145,0.03) 40%, transparent 100%); }
-    #download { background: linear-gradient(180deg, rgba(11,61,145,0.02) 0%, rgba(0,0,0,0.02) 100%); text-align: center; }
-
     h2 {
       color: var(--accent-silver);
       text-align: center;
       margin-bottom: 2.5rem;
       font-size: 2.4rem;
-      text-shadow: 0 4px 20px rgba(11,61,145,0.06);
+      text-shadow: 0 4px 20px rgba(140,76,255,0.14);
     }
 
     .lead {
@@ -103,29 +105,7 @@
       font-size: 1.1rem;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 780px;
-      margin: 2rem auto;
-    }
-
-    ul li {
-      margin: 0.9rem 0;
-      font-size: 1.15rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));
-      padding: 0.85rem 1rem;
-      border-radius: 8px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: 1px solid rgba(255,255,255,0.02);
-      color: var(--accent-silver);
-    }
-
-    ul li:hover {
-      transform: translateX(6px);
-      box-shadow: 0 8px 30px rgba(11,61,145,0.06);
-    }
-
+    /* Gallery */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -143,22 +123,19 @@
       box-shadow: 0 6px 30px rgba(0,0,0,0.6);
       transition: transform 0.25s, box-shadow 0.25s;
       cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
     .gallery img:hover {
       transform: scale(1.04);
-      box-shadow: 0 10px 40px rgba(11,61,145,0.18);
+      box-shadow: 0 10px 40px rgba(140,76,255,0.25);
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(7,23,51,0.03));
       margin-top: 2rem;
-      position: relative;
-      z-index: 2;
-      border-top: 1px solid rgba(255,255,255,0.02);
+      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(30,10,50,0.04));
     }
 
     .social-links a {
@@ -167,166 +144,90 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 1.05rem;
-      transition: 0.2s;
     }
 
     .social-links a:hover {
       color: white;
-      text-shadow: 0 6px 20px rgba(11,61,145,0.14);
-    }
-
-    /* Particles / faint orbs */
-    #particles {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* Side panel for leaks */
-    #leaksPanel {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      right: 0;
-      background: linear-gradient(180deg, rgba(7,23,51,0.98), rgba(2,4,23,0.98));
-      overflow-x: hidden;
-      transition: transform 0.45s ease, width 0.45s ease;
-      transform: translateX(100%);
-      padding-top: 60px;
-      z-index: 20;
-      color: var(--accent-silver);
-      border-left: 1px solid rgba(255,255,255,0.02);
-    }
-
-    #leaksPanel.open {
-      width: 420px;
-      transform: translateX(0);
-    }
-
-    #closeLeaks {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 2.4rem;
-      cursor: pointer;
-      color: var(--accent-silver);
-      transition: 0.2s;
-    }
-
-    #closeLeaks:hover { color: white; transform: scale(1.05); }
-
-    #leaksPanel h2 {
-      text-align: center;
-      color: var(--accent-silver);
-      font-size: 1.6rem;
-      margin-bottom: 1.25rem;
-    }
-
-    #leaksPanel .leaksContent {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.9rem;
-      padding: 0 1.25rem;
-    }
-
-    #leaksPanel img, #leaksPanel video {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 8px 36px rgba(11,61,145,0.16);
-    }
-
-    /* Overlay */
-    #overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 6, 20, 0.6);
-      z-index: 15;
-      display: none;
-    }
-
-    @media(max-width:600px) {
-      header h1 { font-size: 2.6rem; }
-      header p.tagline { font-size: 1rem; }
-      #leaksPanel.open { width: 100%; }
-      .gallery img { height: 140px; }
+      text-shadow: 0 6px 20px rgba(140,76,255,0.3);
     }
   </style>
 </head>
+
 <body>
+
   <canvas id="particles"></canvas>
 
   <header>
-    <h1>ECLIPSE VR</h1>
-    <p class="tagline">Two worlds. One reality.</p>
-    <a href="#download" class="cta-btn">Play Now</a>
-    <a href="https://2smart-dev-debug.github.io/MON-Website/privacypolicy" class="tab-btn" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <h1>MONKLEX</h1>
+    <p class="tagline">Enter the Neon VR Realm.</p>
+    <a href="#download" class="cta-btn">Play Monklex</a>
+    <a href="https://2smart-dev-debug.github.io/MON-Website/privacypolicy" class="tab-btn" target="_blank">Privacy Policy</a>
     <button class="tab-btn" id="leaksBtn">View Leaks</button>
   </header>
 
-  <!-- Side panel for leaks -->
+  <!-- Side Panel -->
   <div id="leaksPanel">
     <span id="closeLeaks">&times;</span>
-    <h2>Leaks & Previews</h2>
+    <h2>Monklex Leaks & Previews</h2>
     <div class="leaksContent" id="leaksContent"></div>
   </div>
 
-  <!-- Overlay -->
   <div id="overlay"></div>
 
+  <!-- ABOUT -->
   <section id="about">
-    <h2>About ECLIPSE VR</h2>
-    <p class="lead">ECLIPSE VR is a dual-mode VR experience built for both chill exploration and high-tension scares. Switch between <strong>Casual</strong> (relaxed social maps and creative spaces) and <strong>Horror</strong> (the same maps transformed into dark, atmospheric nightmares). Choose your mood — or bring friends and swap on the fly.</p>
+    <h2>About MONKLEX</h2>
+    <p class="lead">
+      MONKLEX is a fast-paced social VR experience focused on movement, cosmetics, and a neon sci-fi hub where players gather, compete, and flex their style.  
+      Unlock items, explore stylish futuristic zones, browse shops, and enjoy an evolving world built for fun, speed, and expression.
+    </p>
     <ul>
-      <li>🌐 Two modes: Casual & Horror — same maps, different moods</li>
-      <li>🧭 Dynamic map transformations and environmental storytelling</li>
-      <li>🎭 Social hangouts, player-driven events, and creative spaces</li>
-      <li>👻 Horror mode features adaptive lighting, soundscapes, and tension-driven events</li>
-      <li>⚙️ Built for VR — optimized for comfort and immersion</li>
+      <li>💠 Neon sci-fi hub with stylish environments</li>
+      <li>🧢 Tons of cosmetics + community-driven items</li>
+      <li>🎮 Fast-paced VR gameplay built around movement</li>
+      <li>🌐 Social hangouts + live announcements</li>
+      <li>📈 Progression, streak rewards, and more coming</li>
     </ul>
   </section>
 
+  <!-- GALLERY -->
   <section id="gallery">
-    <h2>Screenshots & Concept Art</h2>
+    <h2>Monklex Screenshots</h2>
     <div class="gallery" id="screenshot-gallery"></div>
   </section>
 
-  <section id="download">
-    <h2>Get ECLIPSE VR</h2>
-    <p class="lead">Available soon on major VR storefronts. Stay tuned for the Meta Store release and public builds. Join our community to get early access and updates.</p>
-    <p><a href="YOUR_META_STORE_LINK" class="cta-btn">Download on Meta Store</a></p>
+  <!-- DOWNLOAD -->
+  <section id="download" style="text-align:center;">
+    <h2>Get MONKLEX</h2>
+    <p class="lead">Coming soon to App Lab & major VR platforms. Join the community for updates.</p>
+    <p><a href="#" class="cta-btn">App Lab Coming Soon</a></p>
   </section>
 
   <footer>
-    <p>© 2025 2SmartStudios</p>
+    <p>© 2025 MONKLEX</p>
     <div class="social-links">
-      <a href="https://discord.gg/xqSesKFpVM" target="_blank" rel="noopener noreferrer">Discord</a>
-      <a href="https://www.tiktok.com/@2.smart_fr" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="https://discord.gg/xqSesKFpVM" target="_blank">Discord</a>
+      <a href="https://www.tiktok.com/@2.smart_fr" target="_blank">TikTok</a>
     </div>
   </footer>
 
   <script>
-    /* -------------------------
-       Dynamic gallery thumbnails
-       ------------------------- */
+    /* GALLERY LOADER */
     const gallery = document.getElementById("screenshot-gallery");
     const totalScreenshots = 10;
+
     for (let i = 1; i <= totalScreenshots; i++) {
       const img = document.createElement("img");
-      img.src = `screenshot${i}.png`;
-      img.alt = `ECLIPSE VR Screenshot ${i}`;
+      img.src = `monklex${i}.png`;
+      img.alt = `Monklex Screenshot ${i}`;
       img.onerror = () => img.remove();
       gallery.appendChild(img);
     }
 
-    /* -------------------------
-       Faint particle/orb animation
-       ------------------------- */
+    /* PARTICLES (unchanged) */
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
+
     function resizeCanvas(){
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -352,14 +253,15 @@
       for (let o of orbs) {
         ctx.beginPath();
         const grd = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r * 8);
-        grd.addColorStop(0, `rgba(179,192,204, ${o.alpha})`); // silver-ish
-        grd.addColorStop(1, `rgba(11,61,145, 0)`);
+        grd.addColorStop(0, `rgba(200,170,255, ${o.alpha})`);
+        grd.addColorStop(1, `rgba(140,76,255, 0)`);
         ctx.fillStyle = grd;
         ctx.arc(o.x, o.y, o.r * 6, 0, Math.PI * 2);
         ctx.fill();
 
         o.x += o.vx;
         o.y += o.vy;
+
         if (o.y > canvas.height + 30) o.y = -40;
         if (o.x > canvas.width + 30) o.x = -40;
         if (o.x < -30) o.x = canvas.width + 30;
@@ -368,25 +270,16 @@
     }
     drawOrbs();
 
-    window.addEventListener("resize", () => {
-      resizeCanvas();
-    });
+    window.addEventListener("resize", resizeCanvas);
 
-    /* -------------------------
-       Leaks side panel logic
-       ------------------------- */
+    /* LEAKS PANEL */
     const leaksBtn = document.getElementById('leaksBtn');
     const leaksPanel = document.getElementById('leaksPanel');
     const closeLeaks = document.getElementById('closeLeaks');
     const leaksContent = document.getElementById('leaksContent');
     const overlay = document.getElementById('overlay');
 
-    // Add leaks/previews here as objects { type: 'image'|'video', src: 'path' }
-    let leaks = [
-      // Example entries (commented out) - remove comments and update sources when ready:
-      // { type: 'image', src: 'leak1.png' },
-      // { type: 'video', src: 'preview1.mp4' }
-    ];
+    let leaks = [];
 
     function updateLeaks() {
       leaksContent.innerHTML = '';
@@ -398,21 +291,6 @@
         message.style.color = 'var(--muted-silver)';
         message.style.margin = '2rem 0';
         leaksContent.appendChild(message);
-      } else {
-        leaks.forEach(item => {
-          let el;
-          if(item.type === 'image'){
-            el = document.createElement('img');
-            el.src = item.src;
-            el.alt = 'Leak image';
-          } else if(item.type === 'video'){
-            el = document.createElement('video');
-            el.src = item.src;
-            el.controls = true;
-            el.playsInline = true;
-          }
-          leaksContent.appendChild(el);
-        });
       }
     }
 
